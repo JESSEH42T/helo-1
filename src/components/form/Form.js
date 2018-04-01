@@ -7,7 +7,7 @@ class Form extends Component {
     super();
     this.state = {
       title: '',
-      imgURL: '',
+      img: '',
       content: ''
     }
   }
@@ -16,23 +16,20 @@ class Form extends Component {
     this.setState({
       [e.target.name]: e.target.value
     })
-  }
+  };
 
-  getFormInfo = () => {
+  sendFormInfo = (e) => {
     axios.post(`/api/post/${this.props.id}`, this.state)
-      .then(res => {
-        
-      })
-  }
+  };
 
   render() {
     return (
       <div>
-        <input placeholder="title" type="text" onChange={this.handleInput.bind(this)}/>
+        <input placeholder="title" type="text" name="title" onChange={this.handleInput.bind(this)}/>
         <img src="" width="400" alt=""/>
-        <input placeholder="imgURL" type="text" onChange={this.handleInput.bind(this)}/>
-        <input placeholder="content" type="text" onChange={this.handleInput.bind(this)}/>
-        <button>Post</button>
+        <input placeholder="img" type="text" name="img" onChange={this.handleInput.bind(this)}/>
+        <input placeholder="content" type="text" name="content" onChange={this.handleInput.bind(this)}/>
+        <button onClick={this.sendFormInfo.bind(this)}>Post</button>
       </div>
     );
   }

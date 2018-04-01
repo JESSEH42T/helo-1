@@ -34,7 +34,7 @@ class Dashboard extends Component {
   render() {
     const list = this.state.posts.map((item, i) => {
       return (
-        <Link to={`/post/${+this.props.id}`} key={i}><div >
+        <Link to={`/post/${item.id}`} key={item.id}><div >
           <p>Post title: {item.title}</p>
           <p>Author name: {item.username}</p>
           <img src={item.profile_pic} alt=""/>

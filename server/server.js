@@ -66,17 +66,16 @@ app.get('/api/posts/:userid', (req, res) => {
 // Part 4
   app.get('/api/post/:postid', (req, res) => {
     const { postid } = req.params;
-    console.log(postid)
     app.get('db').getSinglePost([postid]).then(post => {
       res.status(200).send(post);
     })
   })
 
-// Part 5
+// Part 5 => has problem 
   app.post('/api/post/:userid', (req, res) => {
+    const { userid } = req.params;
     const { title, img, content } = req.body;
-    console.log(title, img, content )
-    app.get('db').getFormInfo([title, img, content]).then(info => {
+    app.get('db').createNewPost([title, img, content, userid]).then(info => {
       res.status(200).send(info);
     })
   })

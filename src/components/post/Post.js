@@ -14,25 +14,22 @@ class Post extends Component {
       }
     }
   }
-  
-  getInfo = () => {
-    console.log('hi')
-    console.log(this.props.match.params.id)
-    axios.get(`/api/post/${this.props.match.params.id}`, this.state)
+
+  componentDidMount() {
+    axios.get(`/api/post/${this.props.match.params.postid}`)
       .then(res => {
-        this.setState({post: res.data});
+        this.setState({post: res.data[0]});
       })
   }
-
+  
   render() {
-    console.log(this.props)
     return (
       <div>
-        <p>Title: {this.state.title}</p>
-        <img src={this.state.image} alt=""/>
-        <p>Content: {this.state.content}</p>
-        <p>Username: {this.state.username}</p>
-        <img src={this.state.profile_pic} alt=""/>
+        <p>Title: {this.state.post.title}</p>
+        <img src={this.state.post.image} alt=""/>
+        <p>Content: {this.state.post.content}</p>
+        <p>Username: {this.state.post.username}</p>
+        <img src={this.state.post.profile_pic} alt=""/>
       </div>
     );
   }
