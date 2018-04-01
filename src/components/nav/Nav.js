@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const Nav = (props) => {
-    console.log(props)
     return (
       <div>
         <Link to='/dashboard'><button>Home</button></Link>
-        <Link to='/new'><button>New Post</button></Link>
+        <Link to='/post'><button>New Post</button></Link>
         <Link to='/'><button>Logout</button></Link>
         <p>Username: {props.username}</p>
-        <img src={props.profile_pic} alt=""/>
+        <img src={props.profile_pic} alt="" style={{width: 100}}/>
       </div>
     )
 }
@@ -23,4 +22,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(null, mapStateToProps)(Nav);
+export default connect(mapStateToProps)(Nav);

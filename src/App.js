@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import './App.css';
 import Nav from './components/nav/Nav';
 import router from './route';
+import { withRouter } from 'react-router-dom';
 
-//how to hide nav using history?
 class App extends Component {
   render() {
-    console.log(this.props.history)
     return (
       <div className="App">
-      <Nav />
+        {
+          this.props.location.pathname !== '/' ? <Nav /> : null
+        }
         { router }
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

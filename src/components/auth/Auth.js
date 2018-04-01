@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updateUser } from '../../ducks/reducer' ;
+import { getUserInfo } from '../../ducks/reducer' ;
 
 class Auth extends Component {
   constructor() {
     super();
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      profile_pic: ''
     }
   }
 
@@ -22,14 +23,18 @@ class Auth extends Component {
   handleRegister() {
     let user = {
       username: this.state.username,
-      password: this.state.password
+      password: this.state.password,
+      profile_pic: `https://robohash.org/${this.state.username}.png`
     }
-    axios.post('/api/auth/register', user);
+    axios.post('/api/auth/register', user)
+      .then(res => {
+        this.props.getUserInfo(res.data[0]);
+      });
     this.setState({
       username: '',
-      password: ''
+      password: '',
+      profile_pic: `https://robohash.org/${this.state.username}.png`
     });
-    this.props.updateUser();
   }
 
   handleLogin() {
@@ -37,12 +42,16 @@ class Auth extends Component {
       username: this.state.username,
       password: this.state.password
     }
-    axios.post('/api/auth/login', user);
+    axios.post('/api/auth/login', user)
+      .then(res => {
+        if (res.data[0]) {
+          this.props.getUserInfo(res.data[0])
+        } 
+      });
     this.setState({
       username: '',
       password: ''
     });
-    this.props.updateUser();
   }
 
   render() {
@@ -57,4 +66,4 @@ class Auth extends Component {
   }
 }
 
-export default connect(null, {updateUser})(Auth);
+export default connect(null, {getUserInfo})(Auth);

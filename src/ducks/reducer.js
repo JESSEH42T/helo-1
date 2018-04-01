@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 
 const initialState = {
   username: '',
@@ -6,26 +6,22 @@ const initialState = {
   profile_pic: ''
 };
 
-const REGISTER = 'REGISTER';
-const LOGIN = 'LOGIN'
+const GET_INFO = 'GET_INFO';
 
 const reducer = (state = initialState, action) => {
-  switch(action.payload) {
-    case REGISTER + '_FULFILLED':
-      return {...state, ...action.payload};
-      // return Object.assign({}, state, {username:})
+  switch(action.type) {
+    case GET_INFO:
+      return {...state, ...action.payload}
+      // return Object.assign({}, state, {username: action.payload.username})
     default:
       return state;
   }
 }
 
-export const updateUser = () => {
-  let user = axios.get('/api/user').then(res => {
-    return res.data;
-  })
+export const getUserInfo = (info) => {
   return {
-    type: REGISTER,
-    payload: {...user}
+    type: GET_INFO,
+    payload: info
   }
 }
 
