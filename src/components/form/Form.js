@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import axios from 'axios';
 
 class Form extends Component {
@@ -19,7 +18,7 @@ class Form extends Component {
   };
 
   sendFormInfo = (e) => {
-    axios.post(`/api/post/${this.props.id}`, this.state)
+    axios.post(`/api/post`, this.state)
   };
 
   render() {
@@ -35,9 +34,4 @@ class Form extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    id: state.id
-  }
-}
-export default connect(mapStateToProps)(Form);
+export default Form;

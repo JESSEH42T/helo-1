@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class Dashboard extends Component {
@@ -18,14 +17,16 @@ class Dashboard extends Component {
   }
 
   requestPosts() {
-    axios.get(`/api/posts/${this.props.id}?myposts=${this.state.myPosts}&search=${this.state.search}`)
+    // removed ${this.props.id}
+    // ?myposts=${this.state.myPosts}&search=${this.state.search}
+    axios.get(`/api/posts?myposts=${this.state.myPosts}&search=${this.state.search}`)
       .then(res => {
         this.setState({posts: res.data});
       })
   }
 
   resetSearch() {
-    axios.get(`/api/posts/${this.props.id}?mypost=${this.state.myPosts}`)
+    axios.get(`/api/posts?mypost=${this.state.myPosts}`)
       .then(res => {
         this.setState({posts: res.data, search: ''});
       })
@@ -44,20 +45,16 @@ class Dashboard extends Component {
 
     return (
       <div>
+      
         <input type="text" onChange={(e) => this.setState({search: e.target.value})}/>
         <button onClick={this.requestPosts.bind(this)}>Search</button>
         <button onClick={this.resetSearch.bind(this)}>Reset</button>
         My posts<input type="checkbox" onClick={() => this.setState({myPosts: !this.state.myPosts})}/>
-        { list }
+        {list}
+      
       </div>
     );
   }
 }
 
-const mapPropsToState = (state) => {
-  return {
-    id: state.id
-  }
-}
-
-export default connect(mapPropsToState)(Dashboard);
+export default Dashboard;
