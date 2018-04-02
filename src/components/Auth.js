@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getUserInfo } from '../../ducks/reducer' ;
+import { getUserInfo } from '../ducks/reducer' ;
 
 class Auth extends Component {
   constructor() {
@@ -56,11 +56,14 @@ class Auth extends Component {
 
   render() {
     return (
-      <div>
-        <input type="text" name="username" onChange={this.handleInput.bind(this)} /> 
-        <input type="text" name="password" onChange={this.handleInput.bind(this)} /> 
-        <Link to='/dashboard'><button  onClick={this.handleRegister.bind(this)}>Register</button></Link>
-        <Link to='/dashboard'><button  onClick={this.handleLogin.bind(this)}>Login</button></Link>
+      <div className="auth">
+        <div className="auth__box">
+        fdfdfdf
+          <input type="text" name="username" onChange={this.handleInput.bind(this)} /> 
+          <input type="text" name="password" onChange={this.handleInput.bind(this)} /> 
+          <Link to='/dashboard'><button  onClick={this.handleRegister.bind(this)}>Register</button></Link>
+          <Link to='/dashboard'><button  onClick={this.handleLogin.bind(this)}>Login</button></Link>
+        </div>
       </div>
     );
   }

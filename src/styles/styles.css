@@ -1,0 +1,8 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+body {
+  font-family: 'Open Sans', sans-serif; }
+
+.auth {
+  width: 100%;
+  height: 100px;
+  background-color: pink; }

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Auth from './components/auth/Auth';
-import Dashboard from './components/dashboard/Dashboard';
-import Post from './components/post/Post';
-import Form from './components/form/Form';
+import Auth from './components/Auth';
+import Dashboard from './components/Dashboard';
+import Post from './components/Post';
+import Form from './components/Form';
 
 export default (
     <Switch>

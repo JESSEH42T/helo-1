@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getUserInfo } from '../../ducks/reducer';
+import { getUserInfo } from '../ducks/reducer';
 import axios from 'axios';
 
 class Nav extends Component {
@@ -17,7 +17,7 @@ class Nav extends Component {
 
   render () {
     return (
-      <div>
+      <div className='nav'>
         <Link to='/dashboard'><button>Home</button></Link>
         <Link to='/new'><button>New Post</button></Link>
         <Link to='/'><button>Logout</button></Link>

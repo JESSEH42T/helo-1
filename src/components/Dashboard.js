@@ -44,8 +44,7 @@ class Dashboard extends Component {
     })
 
     return (
-      <div>
-      
+      <div className="dashboard">
         <input type="text" onChange={(e) => this.setState({search: e.target.value})}/>
         <button onClick={this.requestPosts.bind(this)}>Search</button>
         <button onClick={this.resetSearch.bind(this)}>Reset</button>
